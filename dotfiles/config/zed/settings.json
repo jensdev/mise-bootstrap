@@ -1,0 +1,33 @@
+// Zed settings
+//
+// For information on how to configure Zed, see the Zed
+// documentation: https://zed.dev/docs/configuring-zed
+//
+// To see all of Zed's default settings without changing your
+// custom settings, run `zed: open default settings` from the
+// command palette (cmd-shift-p / ctrl-shift-p)
+{
+  "git_panel": {
+    "tree_view": true
+  },
+  "icon_theme": "Catppuccin Macchiato",
+  "project_panel": {
+    "bold_folder_labels": false,
+    "file_icons": true,
+    "default_width": 240.0,
+    "dock": "left",
+  },
+  "telemetry": {
+    "diagnostics": true,
+    "metrics": true,
+  },
+  "base_keymap": "VSCode",
+  "ui_font_size": 18,
+  "buffer_font_size": 16,
+  "theme": {
+    "mode": "system",
+    "light": "One Light",
+    "dark": "Min Dark (Solid)",
+  },
+  "collaboration_panel": null,
+}

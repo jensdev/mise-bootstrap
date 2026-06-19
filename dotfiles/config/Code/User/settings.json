@@ -1,0 +1,23 @@
+{
+  "workbench.colorCustomizations": null,
+  "workbench.colorTheme": "Dark+",
+  "editor.formatOnSave": true,
+  "git.confirmSync": false,
+  "claudeCode.preferredLocation": "panel",
+  "diffEditor.ignoreTrimWhitespace": false,
+  "svg.preview.mode": "svg",
+  "workbench.browser.showInTitleBar": true,
+  "workbench.startupEditor": "none",
+  "json.schemaDownload.trustedDomains": {
+    "https://developer.microsoft.com/json-schemas/": true,
+    "https://json-schema.org/": true,
+    "https://json.schemastore.org/": true,
+    "https://raw.githubusercontent.com/devcontainers/spec/": true,
+    "https://raw.githubusercontent.com/Effect-TS/tsgo/refs/heads/main/schema.json": true,
+    "https://raw.githubusercontent.com/microsoft/vscode/": true,
+    "https://schemastore.azurewebsites.net/": true,
+    "https://ui.shadcn.com": true,
+    "https://www.schemastore.org/": true,
+  },
+  "workbench.secondarySideBar.defaultVisibility": "hidden",
+}
