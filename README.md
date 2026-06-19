@@ -19,7 +19,7 @@ Development tools, CLI utilities, repositories, and applications:
 | `neovim` | Vim-fork focused on extensibility |
 | `chromium`, `google-chrome-stable` | Browsers |
 | `code` | Visual Studio Code editor |
-| `docker-ce`, `docker-ce-cli`, etc. | Docker container runtime and tools |
+| `podman`, `podman-compose`, `podman-docker` | Native Fedora container engine and CLI emulation |
 | `ghostty` | Highly performant GPU-accelerated terminal emulator |
 | `fastfetch`, `tmux`, `htop`, `jq`, `tree`, `vim` | CLI essentials |
 | `@virtualization` | Virtualization stack (qemu, libvirt, etc.) |
@@ -68,16 +68,16 @@ mise bootstrap
 
 That's it. `mise bootstrap` will:
 
-1. Run the `pre-packages` hook (`setup-repos.sh`) to configure external repositories (RPM Fusion, VS Code, Docker, Chrome, and COPR).
-2. Install all system packages via `dnf` (including browsers, virtualization, Docker, and utilities).
+1. Run the `pre-packages` hook (`setup-repos.sh`) to configure external repositories (RPM Fusion, VS Code, Chrome, and COPR).
+2. Install all system packages via `dnf` (including browsers, virtualization, Podman, and utilities).
 3. Symlink dotfiles to `~`.
 4. Set login shell to `/usr/bin/fish`.
 5. Install dev tools (Node.js, Bun, Java, Swift, ast-grep).
 6. Run the `bootstrap` task (`post-bootstrap.sh`) to:
    - Install Nerd Fonts.
    - Install and symlink Android Studio.
-   - Enable and start `libvirtd` and `docker` services.
-   - Set up user group memberships (`docker`, `libvirt`, `kvm`).
+   - Enable and start the `libvirtd` system service and the user-level `podman.socket` service.
+   - Set up virtualization user group memberships (`libvirt`, `kvm`).
    - Configure Flatpak and install applications (Slack, Spotify, Insomnia, Podman Desktop, Gearlever).
 
 Log out and back in (or run `fish`) to start using your new shell.

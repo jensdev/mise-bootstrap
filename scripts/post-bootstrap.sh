@@ -63,11 +63,9 @@ if systemctl list-unit-files | grep -q "libvirtd.service"; then
     sudo usermod -aG kvm $(whoami)
 fi
 
-echo "Configuring Docker..."
-if systemctl list-unit-files | grep -q "docker.service"; then
-    sudo systemctl enable --now docker
-    sudo usermod -aG docker $(whoami)
-fi
+echo "Configuring Podman user socket..."
+systemctl --user enable --now podman.socket || echo "Failed to enable podman.socket. You may need to run this command when logged in graphically."
+
 
 # 4. Flatpak / Flathub setup
 echo "Configuring Flatpaks..."
@@ -91,4 +89,4 @@ for app in "${FLATPAKS[@]}"; do
 done
 
 echo "=== Post-bootstrap configuration complete! ==="
-echo "NOTE: Some group changes (docker, libvirt, kvm) require you to log out and back in to take effect."
+echo "NOTE: Virtualization group changes (libvirt, kvm) require you to log out and back in to take effect."

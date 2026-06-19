@@ -16,12 +16,6 @@ sudo dnf -y install dnf-plugins-core
 sudo dnf install -y fedora-workstation-repositories
 sudo dnf config-manager setopt google-chrome.enabled=1
 
-# Docker repository
-if [ ! -f /etc/yum.repos.d/docker-ce.repo ]; then
-    echo "Adding Docker CE repository..."
-    sudo dnf config-manager addrepo --from-repofile=https://download.docker.com/linux/fedora/docker-ce.repo --overwrite
-fi
-
 # Visual Studio Code repository
 if [ ! -f /etc/yum.repos.d/vscode.repo ]; then
     echo "Adding VS Code repository..."
