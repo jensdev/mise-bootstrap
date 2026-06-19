@@ -44,6 +44,11 @@ post_packages = "mise run bootstrap"
 "dnf:podman-compose" = "latest"
 "dnf:ghostty" = "latest"
 "dnf:@virtualization" = "latest"
+"dnf:1password" = "latest"
+"dnf:1password-cli" = "latest"
+"dnf:zlib.i686" = "latest"
+"dnf:ncurses-libs.i686" = "latest"
+"dnf:bzip2-libs.i686" = "latest"
 
 # --- User Settings ---
 [bootstrap.user]
