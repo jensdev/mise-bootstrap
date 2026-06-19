@@ -1,0 +1,80 @@
+min_version = "2025.1.0"
+
+[settings]
+experimental = true
+idiomatic_version_file_enable_tools = ["node"]
+
+# --- System Packages (Fedora/DNF) ---
+[bootstrap.packages]
+"dnf:@development-tools" = "latest"
+"dnf:curl" = "latest"
+"dnf:wget" = "latest"
+"dnf:git" = "latest"
+"dnf:vim" = "latest"
+"dnf:zsh" = "latest"
+"dnf:tmux" = "latest"
+"dnf:htop" = "latest"
+"dnf:jq" = "latest"
+"dnf:unzip" = "latest"
+"dnf:ripgrep" = "latest"
+"dnf:fd-find" = "latest"
+"dnf:bat" = "latest"
+"dnf:fzf" = "latest"
+"dnf:tree" = "latest"
+"dnf:net-tools" = "latest"
+"dnf:ca-certificates" = "latest"
+"dnf:gnupg2" = "latest"
+"dnf:util-linux-user" = "latest"
+"dnf:zoxide" = "latest"
+"dnf:fastfetch" = "latest"
+"dnf:starship" = "latest"
+"dnf:eza" = "latest"
+
+# --- User Settings ---
+[bootstrap.user]
+login_shell = "/bin/zsh"
+
+# --- Dotfiles (symlinked to ~) ---
+[system.files]
+"~/.bashrc" = "dotfiles/bashrc"
+"~/.zshrc" = "dotfiles/zshrc"
+"~/.gitconfig" = "dotfiles/gitconfig"
+"~/.config/starship.toml" = "dotfiles/config/starship.toml"
+
+# --- Dev Tools ---
+[tools]
+node = "lts"
+bun = "latest"
+java = "17"
+swift = "latest"
+ast-grep = "latest"
+
+# --- Bootstrap Task (runs automatically as last step of `mise bootstrap`) ---
+[tasks.bootstrap]
+description = "Install oh-my-zsh and zsh plugins"
+run = '''
+#!/bin/bash
+set -euo pipefail
+
+# Install oh-my-zsh (unattended)
+if [ ! -d "$HOME/.oh-my-zsh" ]; then
+  echo "Installing oh-my-zsh..."
+  sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+fi
+
+ZSH_CUSTOM="${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}"
+
+# Install fast-syntax-highlighting
+if [ ! -d "$ZSH_CUSTOM/plugins/fast-syntax-highlighting" ]; then
+  echo "Installing fast-syntax-highlighting..."
+  git clone https://github.com/zdharma-continuum/fast-syntax-highlighting.git "$ZSH_CUSTOM/plugins/fast-syntax-highlighting"
+fi
+
+# Install zsh-autosuggestions
+if [ ! -d "$ZSH_CUSTOM/plugins/zsh-autosuggestions" ]; then
+  echo "Installing zsh-autosuggestions..."
+  git clone https://github.com/zsh-users/zsh-autosuggestions.git "$ZSH_CUSTOM/plugins/zsh-autosuggestions"
+fi
+
+echo "✅ Zsh + plugins setup complete!"
+'''
