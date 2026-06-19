@@ -20,7 +20,16 @@ sudo dnf config-manager setopt google-chrome.enabled=1
 if [ ! -f /etc/yum.repos.d/vscode.repo ]; then
     echo "Adding VS Code repository..."
     sudo rpm --import https://packages.microsoft.com/keys/microsoft.asc
-    echo -e "[code]\nname=Visual Studio Code\nbaseurl=https://packages.microsoft.com/yumrepos/vscode\nenabled=1\nautorefresh=1\ntype=rpm-md\ngpgcheck=1\ngpgkey=https://packages.microsoft.com/keys/microsoft.asc" | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+    cat <<EOF | sudo tee /etc/yum.repos.d/vscode.repo > /dev/null
+[code]
+name=Visual Studio Code
+baseurl=https://packages.microsoft.com/yumrepos/vscode
+enabled=1
+autorefresh=1
+type=rpm-md
+gpgcheck=1
+gpgkey=https://packages.microsoft.com/keys/microsoft.asc
+EOF
 fi
 
 # Copr repositories

@@ -27,8 +27,11 @@ for font in NerdFontsSymbolsOnly CascadiaCode CascadiaMono CodeNewRoman FiraCode
     fi
 done
 
+echo "Rebuilding font cache..."
+fc-cache -fv
+
 # 2. Install Android Studio
-ANDROID_STUDIO_URL="https://redirector.gvt1.com/edgedl/android/studio/ide-zips/2025.1.4.8/android-studio-2025.1.4.8-linux.tar.gz"
+ANDROID_STUDIO_URL="https://edgedl.me.gvt1.com/android/studio/ide-zips/2026.1.1.10/android-studio-quail1-patch2-linux.tar.gz"
 INSTALL_DIR="/opt/android-studio"
 SYMLINK_DIR="/usr/local/bin"
 
@@ -56,12 +59,12 @@ else
 fi
 
 # 3. Systemd Services & User Group setups
-echo "Configuring virtualization (libvirtd)..."
+echo "Configuring virtualization..."
 if systemctl list-unit-files | grep -q "libvirtd.service"; then
     sudo systemctl enable --now libvirtd
-    sudo usermod -aG libvirt $(whoami)
-    sudo usermod -aG kvm $(whoami)
 fi
+sudo usermod -aG libvirt $(whoami) 2>/dev/null || true
+sudo usermod -aG kvm $(whoami) 2>/dev/null || true
 
 echo "Configuring Podman user socket..."
 systemctl --user enable --now podman.socket || echo "Failed to enable podman.socket. You may need to run this command when logged in graphically."
@@ -77,6 +80,14 @@ FLATPAKS=(
     "rest.insomnia.Insomnia"
     "io.podman_desktop.PodmanDesktop"
     "it.mijorus.gearlever"
+    "com.github.IsmaelMartinez.teams_for_linux"
+    "com.heroicgameslauncher.hgl"
+    "io.dbeaver.DBeaverCommunity"
+    "io.github.ungoogled_software.ungoogled_chromium"
+    "org.DolphinEmu.dolphin-emu"
+    "org.gimp.GIMP"
+    "org.videolan.VLC"
+    "com.valvesoftware.Steam"
 )
 
 for app in "${FLATPAKS[@]}"; do
@@ -87,6 +98,12 @@ for app in "${FLATPAKS[@]}"; do
         echo "Flatpak $app is already installed."
     fi
 done
+
+echo "Installing Claude Code..."
+curl -fsSL https://claude.ai/install.sh | bash
+
+echo "Installing Antigravity CLI..."
+curl -fsSL https://antigravity.google/cli/install.sh | bash
 
 echo "=== Post-bootstrap configuration complete! ==="
 echo "NOTE: Virtualization group changes (libvirt, kvm) require you to log out and back in to take effect."
