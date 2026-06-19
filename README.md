@@ -33,18 +33,17 @@ Development tools, CLI utilities, and modern replacements:
 
 ### Dotfiles
 
-Symlinked to `~`:
+Symlinked/configured:
 
-- `.bashrc` — Fedora default + PATH setup
-- `.zshrc` — oh-my-zsh, starship, zoxide, fzf, eza aliases
+- `.config/fish/config.fish` — fish shell configuration with path, aliases, and tool integrations
 - `.gitconfig` — Git configuration
 - `.config/starship.toml` — Starship prompt theme
 
 ### Shell
 
-- Login shell set to `/bin/zsh`
-- [oh-my-zsh](https://ohmyz.sh/) with plugins: `git`, `sudo`, `zsh-autosuggestions`, `fast-syntax-highlighting`, `copyfile`, `copybuffer`
-- [Starship](https://starship.rs/) prompt (replaces oh-my-zsh themes)
+- Login shell set to `/usr/bin/fish`
+- [Starship](https://starship.rs/) prompt, zoxide, fzf, and mise integrations.
+- Pure Fish configuration with no heavy plugin frameworks required (Fish features built-in autosuggestions and syntax highlighting).
 
 ## Bootstrap a fresh Fedora machine
 
@@ -67,11 +66,10 @@ That's it. `mise bootstrap` will:
 
 1. Install all system packages via `dnf`
 2. Symlink dotfiles to `~`
-3. Set login shell to `/bin/zsh`
+3. Set login shell to `/usr/bin/fish`
 4. Install dev tools (node, bun, java, swift, ast-grep)
-5. Install oh-my-zsh + plugins
 
-Log out and back in (or run `zsh`) to start using your new shell.
+Log out and back in (or run `fish`) to start using your new shell.
 
 ## Customizing
 
