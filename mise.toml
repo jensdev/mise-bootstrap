@@ -4,6 +4,9 @@ min_version = "2025.1.0"
 experimental = true
 idiomatic_version_file_enable_tools = ["node"]
 
+[bootstrap.hooks]
+pre-packages = "scripts/setup-repos.sh"
+
 # --- System Packages (Fedora/DNF) ---
 [bootstrap.packages]
 "dnf:@development-tools" = "latest"
@@ -29,6 +32,19 @@ idiomatic_version_file_enable_tools = ["node"]
 "dnf:fastfetch" = "latest"
 "dnf:starship" = "latest"
 "dnf:eza" = "latest"
+"dnf:neovim" = "latest"
+"dnf:python3-neovim" = "latest"
+"dnf:fuse" = "latest"
+"dnf:chromium" = "latest"
+"dnf:google-chrome-stable" = "latest"
+"dnf:code" = "latest"
+"dnf:docker-ce" = "latest"
+"dnf:docker-ce-cli" = "latest"
+"dnf:containerd.io" = "latest"
+"dnf:docker-buildx-plugin" = "latest"
+"dnf:docker-compose-plugin" = "latest"
+"dnf:ghostty" = "latest"
+"dnf:@virtualization" = "latest"
 
 # --- User Settings ---
 [bootstrap.user]
@@ -47,3 +63,9 @@ bun = "latest"
 java = "17"
 swift = "latest"
 ast-grep = "latest"
+
+# --- Bootstrap Task (runs automatically as last step of `mise bootstrap`) ---
+[tasks.bootstrap]
+description = "Install Nerd Fonts, Android Studio, Flatpaks, and services"
+run = "scripts/post-bootstrap.sh"
+

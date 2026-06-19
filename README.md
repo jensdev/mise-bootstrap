@@ -6,19 +6,23 @@ Declarative machine setup for Fedora using [mise](https://mise.jdx.dev/bootstrap
 
 ### System Packages (DNF)
 
-Development tools, CLI utilities, and modern replacements:
+Development tools, CLI utilities, repositories, and applications:
 
-| Tool | Description |
+| Tool / Group | Description |
 |------|-------------|
 | `eza` | Modern `ls` replacement with icons |
 | `zoxide` | Smarter `cd` |
 | `starship` | Cross-shell prompt |
 | `fzf` | Fuzzy finder |
 | `bat` | `cat` with syntax highlighting |
-| `ripgrep` | Fast `grep` |
-| `fd-find` | Fast `find` |
-| `fastfetch` | System info |
-| `tmux`, `htop`, `jq`, `tree`, `vim` | Essentials |
+| `ripgrep`, `fd-find` | Fast grep / find replacements |
+| `neovim` | Vim-fork focused on extensibility |
+| `chromium`, `google-chrome-stable` | Browsers |
+| `code` | Visual Studio Code editor |
+| `docker-ce`, `docker-ce-cli`, etc. | Docker container runtime and tools |
+| `ghostty` | Highly performant GPU-accelerated terminal emulator |
+| `fastfetch`, `tmux`, `htop`, `jq`, `tree`, `vim` | CLI essentials |
+| `@virtualization` | Virtualization stack (qemu, libvirt, etc.) |
 | `@development-tools` | Compilers, make, etc. |
 
 ### Dev Tools (mise)
@@ -64,10 +68,17 @@ mise bootstrap
 
 That's it. `mise bootstrap` will:
 
-1. Install all system packages via `dnf`
-2. Symlink dotfiles to `~`
-3. Set login shell to `/usr/bin/fish`
-4. Install dev tools (node, bun, java, swift, ast-grep)
+1. Run the `pre-packages` hook (`setup-repos.sh`) to configure external repositories (RPM Fusion, VS Code, Docker, Chrome, and COPR).
+2. Install all system packages via `dnf` (including browsers, virtualization, Docker, and utilities).
+3. Symlink dotfiles to `~`.
+4. Set login shell to `/usr/bin/fish`.
+5. Install dev tools (Node.js, Bun, Java, Swift, ast-grep).
+6. Run the `bootstrap` task (`post-bootstrap.sh`) to:
+   - Install Nerd Fonts.
+   - Install and symlink Android Studio.
+   - Enable and start `libvirtd` and `docker` services.
+   - Set up user group memberships (`docker`, `libvirt`, `kvm`).
+   - Configure Flatpak and install applications (Slack, Spotify, Insomnia, Podman Desktop, Gearlever).
 
 Log out and back in (or run `fish`) to start using your new shell.
 
