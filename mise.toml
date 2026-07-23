@@ -49,6 +49,8 @@ post_packages = "mise run bootstrap"
 "dnf:zlib.i686" = "latest"
 "dnf:ncurses-libs.i686" = "latest"
 "dnf:bzip2-libs.i686" = "latest"
+"dnf:tailscale" = "latest"
+"dnf:gh" = "latest"
 
 # --- User Settings ---
 [bootstrap.user]
@@ -65,6 +67,10 @@ login_shell = "/usr/bin/fish"
 "~/.local/share/applications/chrome-craftzing.desktop" = "dotfiles/local/share/applications/chrome-craftzing.desktop"
 "~/.local/share/applications/chrome-personal.desktop" = "dotfiles/local/share/applications/chrome-personal.desktop"
 "~/.local/share/applications/chrome-vlaanderen.desktop" = "dotfiles/local/share/applications/chrome-vlaanderen.desktop"
+"~/.local/bin/tportless" = "dotfiles/local/bin/tportless"
+"~/.claude/settings.json" = "dotfiles/claude/settings.json"
+"~/.codex/config.toml" = "dotfiles/codex/config.toml"
+"~/AGENTS.md" = "dotfiles/AGENTS.md"
 
 # --- Dev Tools ---
 [tools]
@@ -75,6 +81,7 @@ swift = "latest"
 ast-grep = "latest"
 "npm:eas-cli" = "latest"
 "npm:yarn" = "latest"
+"npm:portless" = "latest"
 
 # --- Bootstrap Task (runs automatically as last step of `mise bootstrap`) ---
 [tasks.bootstrap]

@@ -51,6 +51,19 @@ if ! dnf copr list | grep -q "atim/starship"; then
     sudo dnf copr enable -y atim/starship
 fi
 
+# Tailscale repository
+if [ ! -f /etc/yum.repos.d/tailscale.repo ]; then
+    echo "Adding Tailscale repository..."
+    sudo dnf config-manager --add-repo https://pkgs.tailscale.com/stable/fedora/tailscale.repo
+fi
+
+# GitHub CLI repository
+if [ ! -f /etc/yum.repos.d/gh-cli.repo ]; then
+    echo "Adding GitHub CLI repository..."
+    sudo dnf install -y 'dnf-command(config-manager)'
+    sudo dnf config-manager --add-repo https://cli.github.com/packages/rpm/gh-cli.repo
+fi
+
 # 1Password repository
 if [ ! -f /etc/yum.repos.d/1password.repo ]; then
     echo "Adding 1Password repository..."
