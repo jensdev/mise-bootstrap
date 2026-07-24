@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+# Make every server the proxy manages also get a tailnet URL, on a dedicated port.
+export PORTLESS_TAILSCALE=1
+
+# Move the local proxy off of port 443 to avoid needing sudo.
+export PORTLESS_PORT="${PORTLESS_PORT:-1355}"
+
+exec portless "$@"
