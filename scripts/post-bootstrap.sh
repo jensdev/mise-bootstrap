@@ -105,5 +105,14 @@ curl -fsSL https://claude.ai/install.sh | bash
 echo "Installing Antigravity CLI..."
 curl -fsSL https://antigravity.google/cli/install.sh | bash
 
+echo "Installing VS Code Remote SSH extension..."
+code --install-extension ms-vscode-remote.remote-ssh || true
+
+echo "Configuring passwordless sudo for agent frictionless installs..."
+if ! sudo grep -q "$(whoami) ALL=(ALL) NOPASSWD:ALL" /etc/sudoers.d/99-$(whoami)-nopasswd 2>/dev/null; then
+    echo "$(whoami) ALL=(ALL) NOPASSWD:ALL" | sudo tee /etc/sudoers.d/99-$(whoami)-nopasswd > /dev/null
+    sudo chmod 0440 /etc/sudoers.d/99-$(whoami)-nopasswd
+fi
+
 echo "=== Post-bootstrap configuration complete! ==="
 echo "NOTE: Virtualization group changes (libvirt, kvm) require you to log out and back in to take effect."

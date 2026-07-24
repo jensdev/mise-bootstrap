@@ -51,6 +51,7 @@ post_packages = "mise run bootstrap"
 "dnf:bzip2-libs.i686" = "latest"
 "dnf:tailscale" = "latest"
 "dnf:gh" = "latest"
+"dnf:xorg-x11-server-Xvfb" = "latest"
 
 # --- User Settings ---
 [bootstrap.user]
@@ -79,6 +80,7 @@ bun = "latest"
 java = "17"
 swift = "latest"
 ast-grep = "latest"
+uv = "latest"
 "npm:eas-cli" = "latest"
 "npm:yarn" = "latest"
 "npm:portless" = "latest"
